@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="demo">
+      <p>num数值:{{num}}</p>
+      <p>原数据{{message}}</p>
+      <p>反转后的数据{{reversedMessage}}</p>
+      <button @click="add()">增加买的斤数{{weight}}</button>
+      <div>总价为：{{price}}</div>
+    </div>
+    <script>
+      var demo = new Vue({
+        el: "#demo",
+        data: {
+          message: "abcdefg",
+          num: 1,
+          package: {
+            count: 5,
+            price: 5,
+            weight: 1,
+          },
+        },
+        created: function () {
+          this.num = this.num + 2;
+        },
+        // 这里相当于可以一直监听
+        computed: {
+          reversedMessage: function () {
+            return this.message.split("").reverse().join("");
+          },
+          weight: function () {
+            return this.package.weight++;
+          },
+          price: function () {
+            return this.package.price * 5;
+          },
+        },
+        methods: {
+          add: function () {
+            // this.weight++;
+            this.package.weight++;
+            this.num++;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
